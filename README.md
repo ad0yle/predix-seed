@@ -6,7 +6,7 @@ Dashboard Seed is an application that uses Px Web Components and <a href="https:
 ### Get the source code
 Make a directory for your project.  Clone or download and extract the seed in that directory.
 ```
-git clone
+git clone https://github.com/PredixDev/predix-seed.git
 ```
 
 ### Install the dependencies
@@ -26,15 +26,19 @@ Once you're ready to actually start developing, you'll need to setup your own UA
 
 ### UAA
 1. Create a UAA instance following [these steps](https://www.predix.io/docs/?r=250183#XpKGAdQ7-Q0CoIStl).
-	* Note: Make a note of the client secret; you will need it later.
+	1. cf marketplace
+	2. cf create-service predix-uaa <plan> <my_uaa_instance> -c '{"adminClientSecret":"<my_secret>"}'
 2. Get the url of that UAA instance
 	1. Locate any application you have running on cloud foundry.  If you don't have one, you'll have to push some app up there.
 	2. Follow [these steps](https://www.predix.io/docs/?r=250183#sXp7cw5P-Q0CoIStl) to bind your dummy app to UAA.
+        1. cf bind-service <your_app_name> <uaa_instance_name>
+        2. cf env <your_app_name>
 	3. Save the uri and issuerId of your UAA instance.
 
 ### Views
-Create a Views instance following [these steps](https://www.predix.io/docs/?r=250183#yyKdebUl).  Use the UAA issuerId that you gathered above for your trusted issuer.
+Create a Views instance following [these steps](https://www.predix.io/docs/?r=250183#yyKdebUl). Use the UAA issuerId that you gathered above for your trusted issuer.
 * Note: You must use underscores in your service instance name currently (my_view_service, NOT my-view-service)
+1. 
 
 ### Redis
 Create a Redis instance, which is used by nginx for storing your session.
